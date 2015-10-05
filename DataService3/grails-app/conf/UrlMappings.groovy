@@ -9,9 +9,5 @@ class UrlMappings {
 
         "/"(view:"/index")
         "500"(view:'/error')
-		
-		//
-		// DATAService api
-		"/api/city"(resources: 'city')
 	}
 }
