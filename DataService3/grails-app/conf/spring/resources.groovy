@@ -2,8 +2,11 @@
 import grails.rest.render.xml.*
 import grails.rest.render.json.*
 import com.ciholmer.rest.City
+//import com.ciholmer.rest.util.*
  
 beans = {
+	//cityMarshallerRegistrar(CityMarshaller)
+	
     cityXmlRenderer(XmlRenderer, City) {
         excludes = ['class', 'dateCreated']
     }

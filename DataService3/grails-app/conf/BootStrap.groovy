@@ -1,9 +1,14 @@
 import com.ciholmer.rest.City
 import grails.util.Environment
- 
+//import org.springframework.web.context.support.WebApplicationContextUtils
+
 class BootStrap {
     def init = { servletContext ->
- 
+		// Get spring context
+		//def springContext = WebApplicationContextUtils.getWebApplicationContext( servletContext )
+		// register Custom Object Marshaller
+		//springContext.getBean( "cityMarshallerRegistrar").register()
+		
         def result = '################## running in UNCLEAR mode.'
         println "Application starting ... "
         switch (Environment.current) {
