@@ -24,10 +24,12 @@ class City {
     String cityName
     String postalCode
     String countryCode // either iso2 or iso3
+	String stateName 
  
     static constraints = {
         postalCode blank:false, nullable:false
         cityName blank:false, nullable:false
+		stateName blank:false, nullable:false
         countryCode minSize:2, maxSize:3, blank:false, nullable:false, matches: "[A-Z]+"
     }
 }
