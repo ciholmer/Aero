@@ -49,6 +49,7 @@ class BootStrap {
 	}
 	private void seedProdData() {
 		
+		
 		def city = null
 		log.debug("Begining Data Import")
 		println "Stating loading citites into database"
