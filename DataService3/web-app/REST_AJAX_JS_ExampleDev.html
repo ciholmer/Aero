@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>AJAX Example for consuming REST Services</title>
+ <script language="javascript">
+    var xmlhttp;
+    function init() {
+       // put more code here in case you are concerned about browsers that do not provide XMLHttpRequest object directly
+       xmlhttp = new XMLHttpRequest();
+    }
+    function getdetails() {
+        var lookupNum = document.getElementById("lookupNum");
+        var url = "http://localhost:8080/DataService3/city/" + lookupNum.value +".xml";
+        alert (url)
+        xmlhttp.open('GET',url,true);
+        xmlhttp.send();
+        alert ("xmlhttp state " + xmlhttp.readyState + " status:" + xmlhttp.status);
+        xmlhttp.onreadystatechange = function() {
+
+               var postalCode =  document.getElementById("postalCode");
+               var cityName =  document.getElementById("cityName");
+               var stateName = document.getElementbyId("stateName")
+               var countryCode = document.getElementById("countryCode")
+               alert ("xmlhttp readystae is " + xmlhttp.readyState );
+               if (xmlhttp.readyState == 4) {
+                  if ( xmlhttp.status == 200) {
+                       var det = eval( "(" +  xmlhttp.responseText + ")");
+                       alert("Got data"+  xmlhttp.responseText );
+                       if (det.postalCode > 0 ) {
+                    	  
+                          postalCode.value = det.name;
+                          cityName.value = det.cityName;
+                          stateName.value = det.cityName;
+                          countryCode.value = det.countryCode;
+                       }
+                       else {
+                    	   postalCode.value = "";
+                    	   cityName.value =  "";
+                           stateName.value =  "";
+                           countryCode.value =  "";
+                           alert("Invalid Record ID");
+                       }
+                 }
+                 else
+                       alert("Error ->" + xmlhttp.responseText);
+              }
+        };
+        alert("end of xmlhttp onreadystatechange")
+    }
+  </script>
+</head>
+<body>
+<body  onload="init()">
+   <h1>Call Postal Code Service </h1>
+   <table>
+   <tr>
+       <td>Enter Record ID :  </td>
+       <td><input type="text" id="lookupNum" size="10"/>  <input type="button" value="Get Details" onclick="getdetails()"/>
+   </tr>
+   <tr>
+       <td>Postal Code :  </td>
+       <td><input type="text" readonly="true" id="postalCode" size="20"/> </td>
+   </tr>
+
+   <tr>
+       <td>City Name : </td>
+       <td><input type="text" readonly="true" id="cityName" size="10"/> </td>
+   </tr>
+    <tr>
+       <td>State Name : </td>
+       <td><input type="text" readonly="true" id="stateName" size="10"/> </td>
+   </tr>
+    <tr>
+       <td>Country Name : </td>
+       <td><input type="text" readonly="true" id="countryCode" size="10"/> </td>
+   </tr>
+   </table>
+</body>
+</html>

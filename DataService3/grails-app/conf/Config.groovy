@@ -34,6 +34,10 @@ grails.mime.types = [ // the first one is the default format
 // URL Mapping Cache Max Size, defaults to 5000
 //grails.urlmapping.cache.maxsize = 1000
 
+//CORS plugin URL Pattern
+//plugin to add Cross-Origin Resource Sharing (CORS) headers for Grails applications. https://grails.org/plugin/cors
+cors.url.pattern = '/api/*'
+
 // Legacy setting for codec used to encode data with ${}
 grails.views.default.codec = "html"
 
